@@ -1,0 +1,15 @@
+# Arquivos e pastas a serem ignorados pelo Git
+
+# Arquivos de ambiente
+.env
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Arquivos temporários
+*.csv
+*.sqlite3
+
+# Logs
+*.log
