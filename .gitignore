@@ -13,3 +13,13 @@ __pycache__/
 
 # Logs
 *.log
+
+# Ignorar pastas e arquivos do Airflow
+airflow/logs/
+airflow/plugins/
+airflow/__pycache__/
+__pycache__/
+.env
+*.pyc
+*.pyo
+*.sqlite

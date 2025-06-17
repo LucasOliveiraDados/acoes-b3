@@ -5,8 +5,8 @@ def calcular_valorizacoes(dados):
     df = pd.DataFrame(dados)
     df = df.sort_values(by=['ticker', 'data'])
 
-    df['valorizacao_dia'] = df.groupby('ticker')['close'].pct_change()
-    df['valorizacao_acumulada'] = df.groupby('ticker')['close'].transform(lambda x: (x / x.iloc[0] - 1))
+    df['valorizacao_dia'] = df.groupby('ticker')['close'].pct_change().round(2)
+    df['valorizacao_acumulada'] = df.groupby('ticker')['close'].transform(lambda x: (x / x.iloc[0] - 1)).round(2)
 
     return df
 

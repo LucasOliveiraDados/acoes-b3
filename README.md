@@ -57,15 +57,11 @@ DB_PORT=5432
 
 ## Execução
 
-1. Extrair tickers válidos:
+Forma rápida (pipeline completo):
 ```bash
-python codigos/extrair_tickers.py
+python main.py
 ```
 
-2. Executar o pipeline completo:
-```bash
-python codigos/salvar_dados_acoes.py
-```
 
 ---
 

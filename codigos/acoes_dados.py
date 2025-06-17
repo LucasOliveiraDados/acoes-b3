@@ -18,10 +18,10 @@ def obter_dados_acoes(tickers, dias=30):
             registros.append({
                 'ticker': ticker,
                 'data': data.date(),
-                'open': float(linha['Open']),
-                'high': float(linha['High']),
-                'low': float(linha['Low']),
-                'close': float(linha['Close']),
+                'open': round(float(linha['Open']), 2),
+                'high': round(float(linha['High']), 2),
+                'low': round(float(linha['Low']), 2),
+                'close': round(float(linha['Close']), 2),
                 'volume': int(linha['Volume'])
             })
 
