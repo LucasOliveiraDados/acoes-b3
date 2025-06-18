@@ -19,6 +19,9 @@ ACOES_BRASILEIRAS/
 ├── .env                           # Variáveis de ambiente (não versionado)
 ├── requirements.txt               # Bibliotecas do projeto
 ├── airflow/                       # Estrutura do Airflow (Docker + dags)
+├── img/
+│   ├── Banco de Dados.png         # Estrutura da tabela final no banco PostgreSQL
+│   └── Diagrama projeto.jpg       # Diagrama visual do fluxo de dados do projeto
 ```
 
 ---
@@ -46,6 +49,18 @@ Persistência dos dados transformados:
 
 - Armazenamento em banco PostgreSQL (tabela `dados_acoes`)
 - Exportação em CSV local (`dados_acoes.csv`)
+
+---
+
+## 🧩 Visão Arquitetural do Projeto
+
+### 📌 Diagrama Geral do Pipeline
+
+![Diagrama do Projeto](img/Diagrama%20projeto.jpg)
+
+### 🗄️ Estrutura da Tabela no Banco de Dados
+
+![Banco de Dados](img/Banco%20de%20Dados.png)
 
 ---
 
