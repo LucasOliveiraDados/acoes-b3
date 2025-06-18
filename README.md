@@ -19,36 +19,6 @@ ACOES_BRASILEIRAS/
 ├── requirements.txt               # Dependências do projeto
 ```
 
-## ✅ Pré-requisitos
-
-- Python 3.10+
-- PostgreSQL
-- Docker (para Airflow opcional)
-- Conta no GitHub (para clonar o projeto)
-
----
-
-## ⚙️ Instalação
-
-```bash
-git clone https://github.com/LucasOliveiraDados/ACOES_BRASILEIRAS.git
-cd ACOES_BRASILEIRAS
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-Configure o arquivo `.env` com os dados de conexão ao PostgreSQL:
-
-```ini
-DB_HOST=localhost
-DB_NAME=seu_banco
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_PORT=5432
-```
-
----
 
 ## 🔄 ETL – Extração, Transformação e Carga dos Dados
 
