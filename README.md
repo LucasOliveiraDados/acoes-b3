@@ -1,78 +1,97 @@
 # ACOES_BRASILEIRAS
 
-Projeto para extração, análise e armazenamento de dados de ações da B3 com foco em liquidez mínima e valorização recente.
+Este projeto realiza a extração, transformação, análise e armazenamento de dados de ações da B3, com foco nas mais líquidas e nas variações recentes de desempenho. Todo o pipeline foi desenvolvido em Python, orquestrado com **Apache Airflow**, containerizado com **Docker** e os dados finais analisados no **Power BI**.
 
-## Estrutura do Projeto
+---
 
-```plaintext
+## 📁 Estrutura do Projeto
+
+```
 ACOES_BRASILEIRAS/
 ├── codigos/
-│   ├── extrair_tickers.py         # Filtra ações com liquidez diária ≥ R$ 5 milhões (API brapi.dev)
-│   ├── acoes_dados.py             # Extrai dados diários de cotações com yfinance
+│   ├── extrair_tickers.py         # Seleciona ações com liquidez ≥ R$ 5 milhões (API brapi.dev)
+│   ├── acoes_dados.py             # Coleta histórico de preços via yfinance
 │   ├── valorizacao_acoes.py       # Calcula valorização diária e acumulada
-│   ├── salvar_dados_acoes.py      # Armazena os dados em PostgreSQL e exporta CSV
-│   └── conexao_banco.py           # Estabelece conexão via variáveis de ambiente (.env)
-├── tickers_validos.txt            # Lista de ações válidas extraídas da API
-├── .env                           # Variáveis de ambiente para conexão com o banco (não versionado)
-├── requirements.txt               # Dependências do projeto
-```
-
-## Pré-requisitos
-
-- Python 3.10+
-- PostgreSQL
-- Conta no GitHub (para clonar o projeto)
-
----
-
-## Instalação
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/LucasOliveiraDados/ACOES_BRASILEIRAS.git
-cd ACOES_BRASILEIRAS
-```
-
-2. (Opcional) Crie o ambiente virtual:
-```bash
-python -m venv .venv
-.venv\Scripts\activate  # no Windows
-```
-
-3. Instale as dependências:
-```bash
-pip install -r requirements.txt
-```
-
-4. Configure o `.env` com os dados de conexão ao PostgreSQL:
-```ini
-DB_HOST=localhost
-DB_NAME=seu_banco
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_PORT=5432
+│   ├── salvar_dados_acoes.py      # Armazena no PostgreSQL e exporta em CSV
+│   └── conexao_banco.py           # Gerencia conexão com o banco (via .env)
+├── main.py                        # Pipeline completo: extração + transformação + carga
+├── tickers_validos.txt            # Lista dos tickers filtrados
+├── .env                           # Variáveis de ambiente (não versionado)
+├── requirements.txt               # Bibliotecas do projeto
+├── airflow/                       # Estrutura do Airflow (Docker + dags)
 ```
 
 ---
 
-## Execução
+## 🔄 ETL – Pipeline de Dados
 
-Forma rápida (pipeline completo):
-```bash
-python main.py
-```
+A lógica de dados foi estruturada em três etapas principais:
 
+### 🟢 Extração
+
+Coleta automática de dados de ações com base em critérios mínimos de liquidez.
+
+- `extrair_tickers.py`: Consulta a API pública brapi.dev e filtra ativos com volume médio diário ≥ R$ 5 milhões.
+- `acoes_dados.py`: Consulta o histórico de preços e volumes diários via yfinance.
+
+### 🟡 Transformação
+
+Cálculo de métricas financeiras úteis à tomada de decisão.
+
+- `valorizacao_acoes.py`: Calcula a valorização diária e valorização acumulada ao longo do período analisado, mantendo os valores com 2 casas decimais.
+
+### 🟠 Carga
+
+Persistência dos dados transformados:
+
+- Armazenamento em banco PostgreSQL (tabela `dados_acoes`)
+- Exportação em CSV local (`dados_acoes.csv`)
 
 ---
 
-## Saídas
+## ⚙️ Orquestração com Airflow
 
-- **Banco de dados**: tabela `dados_acoes` no PostgreSQL.
-- **Arquivo local**: `dados_acoes.csv` com os dados completos e variações.
+A automação das etapas foi feita com o Apache Airflow, permitindo agendamentos periódicos do pipeline.
+
+- Estrutura completa com `docker-compose` e pastas `dags/`, `plugins/`, `logs/`
+- DAG personalizada para executar o pipeline completo em ordem (extração → transformação → carga)
+- Ambiente isolado com Docker, pronto para escalabilidade futura
 
 ---
 
-## Autor
+## 🐳 Docker
 
-Lucas Oliveira  
-[github.com/LucasOliveiraDados](https://github.com/LucasOliveiraDados)
+Todo o ecossistema de execução foi encapsulado em containers Docker:
+
+- Banco de dados PostgreSQL
+- Webserver e Scheduler do Airflow
+- Execução do pipeline via `main.py` e/ou agendamento
+
+---
+
+## 📊 Análise Visual com Power BI
+
+A análise dos dados transformados foi feita com Power BI Desktop, utilizando o arquivo `dados_acoes.csv` como fonte principal.
+
+Principais KPIs e visualizações:
+
+- **Média da valorização acumulada** (comparada à meta da Selic)
+- **Proporção de ações com desempenho positivo** (meta: ≥50%)
+- **Média de volume diário negociado**
+- **Gráfico comparativo entre ações selecionadas**
+- **Ranking de ações com maior valorização acumulada**
+- **Evolução de volume e preço por mês**
+
+---
+
+## 🔗 Links
+
+- Código-fonte completo: [GitHub – LucasOliveiraDados](https://github.com/LucasOliveiraDados)
+- Dashboard interativo no Power BI Service: _(inserir link ao publicar)_
+
+---
+
+## ✍️ Autor
+
+**Lucas Oliveira**  
+[GitHub](https://github.com/LucasOliveiraDados) · [LinkedIn](https://www.linkedin.com/)
