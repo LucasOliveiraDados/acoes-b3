@@ -102,7 +102,7 @@ Principais KPIs e visualizações:
 ## 🔗 Links
 
 - Código-fonte completo: [GitHub – LucasOliveiraDados](https://github.com/LucasOliveiraDados)
-- Dashboard interativo no Power BI Service: _([inserir link ao publicar](https://app.powerbi.com/view?r=eyJrIjoiYzkwNDIwNjctMzk2ZS00N2UzLWJhYzgtZDdjMGVmYzY1NDRjIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9))_
+- Dashboard interativo no Power BI Service: _([Power BI](https://app.powerbi.com/view?r=eyJrIjoiYzkwNDIwNjctMzk2ZS00N2UzLWJhYzgtZDdjMGVmYzY1NDRjIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9))_
 
 ---
 
