@@ -1,4 +1,4 @@
-# ACOES_BRASILEIRAS
+# acoes_b3
 
 Este projeto realiza a extração, transformação, análise e armazenamento de dados de ações da B3, com foco nas mais líquidas e nas variações recentes de desempenho. Todo o pipeline foi desenvolvido em Python, orquestrado com **Apache Airflow**, containerizado com **Docker** e os dados finais analisados no **Power BI**.
 
